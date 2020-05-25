@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TextInput, Button, StyleSheet } from "react-native";
+import { Text, View, TextInput, Button, StyleSheet, Image } from "react-native";
 import { showShape } from "../utilityFunctions";
 
 export default class ShapeBuilder extends React.Component {
@@ -9,6 +9,7 @@ export default class ShapeBuilder extends React.Component {
       x: "",
       y: "",
       sum: "",
+      shape: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
@@ -16,11 +17,14 @@ export default class ShapeBuilder extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const sum = this.state.x + this.state.y;
+    const sum = parseFloat(this.state.x) + parseFloat(this.state.y);
+    const image = showShape(sum);
     this.setState({
+      x: this.state.x,
+      y: this.state.y,
       sum: sum,
+      shape: image,
     });
-    showShape(sum);
   }
 
   handleRefresh() {
@@ -28,7 +32,9 @@ export default class ShapeBuilder extends React.Component {
       x: "",
       y: "",
       sum: "",
+      shape: "",
     });
+    console.log("after refresh: ", this.state);
   }
 
   render() {
@@ -64,6 +70,13 @@ export default class ShapeBuilder extends React.Component {
         </View>
 
         <Button title="Add" onPress={this.handleSubmit} />
+
+        {this.state.shape.length > 2 ? (
+          <Image
+            source={{ uri: this.state.shape }}
+            style={{ width: 40, height: 40 }}
+          />
+        ) : null}
 
         <Button title="Play Again" onPress={this.handleRefresh} />
       </View>
