@@ -7,7 +7,7 @@ class Main extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Instructions />
+        {/* <Instructions /> */}
         <ShapeBuilder />
       </View>
     );

@@ -69,16 +69,28 @@ export default class ShapeBuilder extends React.Component {
           </View>
         </View>
 
-        <Button title="Add" onPress={this.handleSubmit} />
+        <Button
+          title="Add"
+          onPress={this.handleSubmit}
+          disabled={this.state.y > 10 || this.state.x > 10}
+        />
 
-        {this.state.shape.length > 2 ? (
-          <Image
-            source={{ uri: this.state.shape }}
-            style={{ width: 40, height: 40 }}
-          />
+        {this.state.y > 10 || this.state.x > 10 ? (
+          <Text>
+            Both numbers must be greater than or equal to 0, and less than or
+            equal to 10.
+          </Text>
         ) : null}
 
-        <Button title="Play Again" onPress={this.handleRefresh} />
+        {this.state.shape.length > 2 ? (
+          <View>
+            <Image
+              source={{ uri: this.state.shape }}
+              style={{ width: 40, height: 40 }}
+            />
+            <Button title="Play Again" onPress={this.handleRefresh} />
+          </View>
+        ) : null}
       </View>
     );
   }
