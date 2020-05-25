@@ -1,27 +1,39 @@
 import React from "react";
-import { Text, View, TextInput, Button, StyleSheet, Image } from "react-native";
-// import { Overlay } from "react-native-elements";
+import { Text, View, Button, StyleSheet, Image } from "react-native";
 
 const DisplayShape = (props) => {
   const { x, y, sum, shape, handleRefresh } = props;
   return (
-    // <Overlay
-    //   isVisible={displayShape}
-    //   // width={"75%"}
-    //   // height={"75%"}
-    //   animationType={"fade"}
-    //   overlayBackgroundColor={"white"}
-    // >
     <View>
-      <Text>
-        {x} + {y} = {sum}
-        This is a {shape.name}. It has {sum} sides.
-      </Text>
-      <Image source={{ uri: shape.uri }} style={{ width: 40, height: 40 }} />
-      <Button title="New Shape" onPress={handleRefresh} />
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>
+          {x} + {y} = {sum}
+        </Text>
+        <Text style={styles.text}>{shape.name}</Text>
+        <Image source={{ uri: shape.uri }} style={styles.image} />
+      </View>
+      <Button title="New Shape" onPress={handleRefresh} color="black" />
     </View>
-    // </Overlay>
   );
 };
 
 export default DisplayShape;
+
+const styles = StyleSheet.create({
+  textContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ffffff",
+    padding: 15,
+    borderRadius: 10,
+    margin: 5,
+    width: 350,
+  },
+  text: {
+    fontSize: 40,
+  },
+  image: {
+    width: 150,
+    height: 150,
+  },
+});

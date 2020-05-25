@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Instructions from "./Instructions";
 import ShapeBuilder from "./ShapeBuilder";
 
@@ -19,9 +19,8 @@ export default Main;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#04c4b4",
     alignItems: "center",
-    justifyContent: "center",
-    margin: 10,
+    padding: 20,
   },
 });
