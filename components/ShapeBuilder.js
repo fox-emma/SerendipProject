@@ -41,12 +41,41 @@ export default class ShapeBuilder extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <View>
+          {this.state.y > 10 ||
+          this.state.y < 0 ||
+          this.state.x > 10 ||
+          this.state.x < 0 ? (
+            <Text style={styles.warningText}>
+              <Text style={styles.bold}>Reminder!{"\n"}</Text>Both numbers must
+              be between 0 and 10, inclusive.
+            </Text>
+          ) : null}
+
+          {isNaN(this.state.y) || isNaN(this.state.x) ? (
+            <Text style={styles.warningText}>
+              <Text style={styles.bold}>Reminder!{"\n"}</Text>
+              Both inputs must be numbers.{"\n"}No letters or special characters
+              allowed.
+            </Text>
+          ) : null}
+
+          {parseFloat(this.state.x) + parseFloat(this.state.y) < 3 ? (
+            <Text style={styles.warningText}>
+              <Text style={styles.bold}>Reminder!{"\n"}</Text>
+              The total sum must be 3 or greater.{"\n"}
+              {this.state.x} + {this.state.y} ={" "}
+              {parseFloat(this.state.x) + parseFloat(this.state.y)}. Sum is too
+              low.
+            </Text>
+          ) : null}
+        </View>
         {!this.state.sum ? (
           <View>
             <View style={styles.add}>
               <TextInput
                 style={styles.textInput}
-                placeholder="0"
+                placeholder="x"
                 value={this.state.x}
                 onChangeText={(text) => {
                   this.setState({
@@ -59,7 +88,7 @@ export default class ShapeBuilder extends React.Component {
 
               <TextInput
                 style={styles.textInput}
-                placeholder="0"
+                placeholder="y"
                 value={this.state.y}
                 onChangeText={(text) => {
                   this.setState({
@@ -95,35 +124,6 @@ export default class ShapeBuilder extends React.Component {
             displayShape={this.state.displayShape}
           />
         )}
-        <View>
-          {this.state.y > 10 ||
-          this.state.y < 0 ||
-          this.state.x > 10 ||
-          this.state.x < 0 ? (
-            <Text style={styles.warningText}>
-              <Text style={styles.bold}>Reminder!{"\n"}</Text>Both numbers must
-              be between 0 and 10, inclusive.
-            </Text>
-          ) : null}
-
-          {isNaN(this.state.y) || isNaN(this.state.x) ? (
-            <Text style={styles.warningText}>
-              <Text style={styles.bold}>Reminder!{"\n"}</Text>
-              Both inputs must be numbers.{"\n"}No letters or special characters
-              allowed.
-            </Text>
-          ) : null}
-
-          {parseFloat(this.state.x) + parseFloat(this.state.y) < 3 ? (
-            <Text style={styles.warningText}>
-              <Text style={styles.bold}>Reminder!{"\n"}</Text>
-              The total sum must be 3 or greater.{"\n"}
-              {this.state.x} + {this.state.y} ={" "}
-              {parseFloat(this.state.x) + parseFloat(this.state.y)}. Sum is too
-              low.
-            </Text>
-          ) : null}
-        </View>
       </View>
     );
   }
@@ -137,7 +137,8 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     margin: 5,
-    width: 375,
+    marginBottom: 45,
+    width: 350,
   },
   add: {
     flexDirection: "row",
