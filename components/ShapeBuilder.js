@@ -11,7 +11,6 @@ export default class ShapeBuilder extends React.Component {
       y: "",
       sum: "",
       shape: {},
-      displayShape: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
@@ -24,7 +23,6 @@ export default class ShapeBuilder extends React.Component {
       ...this.state,
       sum: sum,
       shape: shape,
-      displayShape: true,
     });
   }
 
@@ -34,7 +32,6 @@ export default class ShapeBuilder extends React.Component {
       y: "",
       sum: "",
       shape: {},
-      displayShape: false,
     });
   }
 
@@ -121,7 +118,6 @@ export default class ShapeBuilder extends React.Component {
             y={this.state.y}
             sum={this.state.sum}
             shape={this.state.shape}
-            displayShape={this.state.displayShape}
           />
         )}
       </View>
